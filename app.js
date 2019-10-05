@@ -61,6 +61,7 @@ client.on('message', async (message) => {
   if (postedMessage.startsWith(`@${BOT_NAME}`) && postedMessage.includes('凸管理')) {
     if (isActive) {
       await message.channel.send('起動中です。');
+      return;
     }
     isActive = true;
     const today = moment().format('YYYY/MM/DD');
@@ -86,6 +87,7 @@ client.on('message', async (message) => {
       }
     });
     memberStatusMessage = await message.channel.send(getMembersStatusText());
+    return;
   }
 
   if (postedMessage.startsWith(`@${BOT_NAME}`)) {
@@ -97,6 +99,7 @@ client.on('message', async (message) => {
       memberStatusMap = new Map();
       memberStatusMessage = null;
       await message.channel.send('リセットしました。');
+      return;
     }
   }
 });
